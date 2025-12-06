@@ -148,7 +148,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Portfolio", path: "/portfolio" },
+    { name: "Projects", path: "/portfolio" },
     { name: "Skills", path: "/skills" },
     { name: "Contact", path: "/contact" },
   ];
@@ -470,7 +470,7 @@ const PortfolioSection = () => {
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <SectionHeading
-            badge="PORTFOLIO"
+            badge="PROJECTS"
             title={<>My Latest <span className="text-emerald-600">Work.</span></>}
             subtitle="Check out some of my recent full-stack and frontend projects."
           />
