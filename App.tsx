@@ -17,8 +17,8 @@ import {
   ExternalLink,
   Loader2
 } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+// REMOVED: import emailjs from '@emailjs/browser'; <-- No longer needed
+import Swal from 'sweetalert2'; 
 
 // --- Shared Components ---
 
@@ -27,7 +27,7 @@ const SocialIcon: React.FC<{ children: React.ReactNode; href?: string; className
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className={`w-12 h-12 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center transition duration-300 text-gray-300 hover:text-white ${className}`}
+    className={`w-12 h-12 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center transition duration-500 text-gray-300 hover:text-white ${className}`}
     {...props}
   >
     {children}
@@ -58,7 +58,7 @@ const ProgressBar = ({ label, percentage }: { label: string; percentage: number 
     </div>
     <div className="w-full bg-gray-700 rounded-full h-2.5">
       <div
-        className="bg-emerald-600 h-2.5 rounded-full transition-all duration-1000 ease-out"
+        className="bg-emerald-600 h-2.5 rounded-full transition-all duration-[2000ms] ease-out"
         style={{ width: `${percentage}%` }}
       ></div>
     </div>
@@ -70,12 +70,11 @@ const ProgressBar = ({ label, percentage }: { label: string; percentage: number 
 const Footer = () => {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    // SweetAlert for Newsletter
     Swal.fire({
       title: 'Subscribed!',
       text: 'Thank you for subscribing to the newsletter.',
       icon: 'success',
-      confirmButtonColor: '#059669', // Emerald-600
+      confirmButtonColor: '#059669', 
       background: '#1D1D1D',
       color: '#fff'
     });
@@ -97,10 +96,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-emerald-600">Quick Links</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li><Link to="/" className="hover:text-white transition">Home</Link></li>
-              <li><Link to="/about" className="hover:text-white transition">About</Link></li>
-              <li><Link to="/portfolio" className="hover:text-white transition">Portfolio</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition">Contact</Link></li>
+              <li><Link to="/" className="hover:text-white transition duration-300">Home</Link></li>
+              <li><Link to="/about" className="hover:text-white transition duration-300">About</Link></li>
+              <li><Link to="/portfolio" className="hover:text-white transition duration-300">Portfolio</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition duration-300">Contact</Link></li>
             </ul>
           </div>
 
@@ -120,9 +119,9 @@ const Footer = () => {
                 type="email"
                 placeholder="Enter email"
                 required
-                className="bg-gray-800 border border-gray-700 rounded px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-600 transition"
+                className="bg-gray-800 border border-gray-700 rounded px-4 py-2 text-sm text-white focus:outline-none focus:border-emerald-600 transition duration-300"
               />
-              <button className="bg-emerald-600 text-white text-sm font-bold uppercase py-2 rounded hover:bg-emerald-700 transition">
+              <button className="bg-emerald-600 text-white text-sm font-bold uppercase py-2 rounded hover:bg-emerald-700 transition duration-300">
                 Subscribe
               </button>
             </form>
@@ -134,8 +133,8 @@ const Footer = () => {
             © 2025 Farhana Jaman. All rights reserved.
           </p>
           <div className="flex space-x-4">
-            <a href="https://github.com/rimi-1234/" className="text-gray-400 hover:text-emerald-600 transition"><Github size={20} /></a>
-            <a href="https://www.linkedin.com/in/farhana-jaman/" className="text-gray-400 hover:text-emerald-600 transition"><Linkedin size={20} /></a>
+            <a href="https://github.com/rimi-1234/" className="text-gray-400 hover:text-emerald-600 transition duration-300"><Github size={20} /></a>
+            <a href="https://www.linkedin.com/in/farhana-jaman/" className="text-gray-400 hover:text-emerald-600 transition duration-300"><Linkedin size={20} /></a>
           </div>
         </div>
       </div>
@@ -171,7 +170,7 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `transition duration-300 ${isActive ? 'text-emerald-600' : 'hover:text-emerald-600'}`
+                  `transition duration-500 ${isActive ? 'text-emerald-600' : 'hover:text-emerald-600'}`
                 }
               >
                 {link.name}
@@ -207,6 +206,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
+          transition={{ duration: 0.8 }} 
           className="lg:hidden bg-[#1D1D1D] border-t border-gray-800"
         >
           <div className="flex flex-col p-6 space-y-4 text-sm font-medium uppercase tracking-wider text-white">
@@ -214,7 +214,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="block py-2 hover:text-emerald-600"
+                className="block py-2 hover:text-emerald-600 transition duration-300"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -251,9 +251,9 @@ const Layout = () => {
 const HeroSection = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
       className="container mx-auto px-6 py-12"
     >
       <div className="w-full bg-[#1D1D1D] rounded-lg border border-gray-700/50 p-6 md:p-12 overflow-hidden relative">
@@ -276,7 +276,6 @@ const HeroSection = () => {
                 <SocialIcon href="mailto:zfarhana156@gmail.com" aria-label="Email"><Mail size={20} /></SocialIcon>
               </div>
               <div className="flex items-center space-x-4">
-                {/* --- UPDATE 1: Replaced Phone icon with Small Image --- */}
                 <div className="w-12 h-12 bg-gray-800/50 rounded-md flex items-center justify-center overflow-hidden border border-gray-700">
                     <img 
                       src="https://i.ibb.co.com/3yX1K51Z/cdp-372.jpg" 
@@ -293,7 +292,6 @@ const HeroSection = () => {
           </div>
 
           <div className="relative hidden lg:block">
-            {/* --- UPDATE 2: Replaced Text Placeholder with Large Image --- */}
             <div className="relative z-10 max-w-full h-[500px] flex items-center justify-center">
                <img 
                  src="https://i.ibb.co.com/3yX1K51Z/cdp-372.jpg" 
@@ -311,19 +309,20 @@ const HeroSection = () => {
 const AboutSection = () => {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5 }}
+      viewport={{ once: true }}
       className="font-display py-20 sm:py-24"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-2">
-            {/* --- UPDATE 3: Replaced Text Placeholder with Profile Image --- */}
             <div className="relative rounded-lg overflow-hidden shadow-2xl group bg-gray-800 h-96 flex items-center justify-center border border-gray-700">
               <img 
                  src="https://i.ibb.co.com/3yX1K51Z/cdp-372.jpg" 
                  alt="Farhana Jaman" 
-                 className="w-full h-full object-cover transition duration-500 group-hover:scale-105" 
+                 className="w-full h-full object-cover transition duration-[2000ms] group-hover:scale-105" 
                />
               <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition duration-500"></div>
             </div>
@@ -364,8 +363,10 @@ const AboutSection = () => {
 const SkillsSection = () => {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5 }}
+      viewport={{ once: true }}
       className="font-display py-20 sm:py-24 bg-[#111111]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -402,7 +403,7 @@ const SkillsSection = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            DOWNLOAD RESUME
+            DOWNLOAD CV
           </a>
         </div>
       </div>
@@ -463,6 +464,7 @@ const PortfolioSection = () => {
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
       className="font-display py-20 sm:py-24 bg-[#111111]"
     >
       <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
@@ -481,12 +483,12 @@ const PortfolioSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#1a1a1a] p-6 rounded-lg text-left hover:bg-[#252525] transition duration-300 border border-gray-800 group flex flex-col h-full"
+              transition={{ duration: 1.0, delay: index * 0.4 }}
+              className="bg-[#1a1a1a] p-6 rounded-lg text-left hover:bg-[#252525] transition duration-500 border border-gray-800 group flex flex-col h-full"
             >
               <div className="mb-4 flex-grow">
                 <span className={`${item.color} text-xs font-bold uppercase tracking-widest`}>{item.category}</span>
-                <h3 className={`text-xl font-bold text-white mt-2 mb-2 ${item.hoverColor} transition`}>{item.title}</h3>
+                <h3 className={`text-xl font-bold text-white mt-2 mb-2 ${item.hoverColor} transition duration-300`}>{item.title}</h3>
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">
                   {item.description}
                 </p>
@@ -497,7 +499,7 @@ const PortfolioSection = () => {
 
               <div className="mt-auto">
                 <a
-                  style={{ transition: 'color 0.3s' }}
+                  style={{ transition: 'color 0.5s' }}
                   className="inline-flex items-center text-white font-semibold text-sm hover:text-emerald-500 transition-colors duration-300"
                   href={item.link}
                   target="_blank"
@@ -513,56 +515,70 @@ const PortfolioSection = () => {
     </motion.section>
   )
 }
-
 const ContactSection = () => {
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
 
-  const sendEmail = (e: React.FormEvent) => {
+  const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS
-    const SERVICE_ID = 'YOUR_SERVICE_ID'; // e.g. service_z3x...
-    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // e.g. template_k9...
-    const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // e.g. user_123...
+    if (!form.current) return;
 
-    if (form.current) {
-      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
-        .then((result) => {
-          console.log(result.text);
-          setLoading(false);
-          // SweetAlert Success
-          Swal.fire({
-            title: 'Message Sent!',
-            text: 'I will get back to you as soon as possible.',
-            icon: 'success',
-            confirmButtonColor: '#059669', // Emerald-600
-            background: '#1D1D1D',
-            color: '#fff'
-          });
-          if (form.current) form.current.reset();
-        }, (error) => {
-          console.log(error.text);
-          setLoading(false);
-          // SweetAlert Error
-          Swal.fire({
-            title: 'Oops!',
-            text: 'Something went wrong. Please try again later.',
-            icon: 'error',
-            confirmButtonColor: '#d33',
-            background: '#1D1D1D',
-            color: '#fff'
-          });
+    // 1. Get form data
+    const formData = new FormData(form.current);
+    const data = Object.fromEntries(formData.entries());
+
+    // 2. Send to Formspree
+    // I put your ID 'xblnkqpb' here directly
+    const FORMSPREE_ID = 'xblnkqpb'; 
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // <--- THIS WAS MISSING
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        setLoading(false);
+        Swal.fire({
+          title: 'Message Sent!',
+          text: 'Thanks for reaching out!',
+          icon: 'success',
+          confirmButtonColor: '#059669',
+          background: '#1D1D1D',
+          color: '#fff'
         });
+        form.current.reset();
+      } else {
+        // Try to get the error message from Formspree response
+        const errorData = await response.json();
+        console.error("Formspree Error:", errorData);
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      setLoading(false);
+      Swal.fire({
+        title: 'Oops!',
+        text: 'Something went wrong. Please try again.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        background: '#1D1D1D',
+        color: '#fff'
+      });
     }
   };
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 3.0, ease: "easeInOut" }}
+      viewport={{ once: true }}
       className="font-display bg-[#111111] text-gray-300 py-20 sm:py-24 flex-grow"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -603,8 +619,8 @@ const ContactSection = () => {
             <form ref={form} onSubmit={sendEmail} className="space-y-6">
               <div>
                 <input
-                  className="w-full bg-gray-700/50 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:ring-emerald-600 focus:border-emerald-600 transition"
-                  name="user_name"
+                  className="w-full bg-gray-700/50 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:ring-emerald-600 focus:border-emerald-600 transition duration-500"
+                  name="name" 
                   placeholder="Name"
                   type="text"
                   required
@@ -612,8 +628,8 @@ const ContactSection = () => {
               </div>
               <div>
                 <input
-                  className="w-full bg-gray-700/50 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:ring-emerald-600 focus:border-emerald-600 transition"
-                  name="user_email"
+                  className="w-full bg-gray-700/50 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:ring-emerald-600 focus:border-emerald-600 transition duration-500"
+                  name="email"
                   placeholder="Email"
                   type="email"
                   required
@@ -621,7 +637,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <textarea
-                  className="w-full bg-gray-700/50 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:ring-emerald-600 focus:border-emerald-600 transition"
+                  className="w-full bg-gray-700/50 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:ring-emerald-600 focus:border-emerald-600 transition duration-500"
                   name="message"
                   placeholder="Message"
                   rows={4}
@@ -630,7 +646,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <button
-                  className={`w-full text-white font-semibold py-4 px-10 rounded-md transition-colors duration-300 shadow-lg flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700`}
+                  className={`w-full text-white font-semibold py-4 px-10 rounded-md transition-colors duration-1000 shadow-lg flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700`}
                   type="submit"
                   disabled={loading}
                 >
@@ -648,7 +664,6 @@ const ContactSection = () => {
     </motion.section>
   );
 };
-
 // --- Page Aggregation ---
 
 const Home = () => (
