@@ -467,7 +467,7 @@ const PortfolioSection = () => {
       transition={{ duration: 1.5 }}
       className="font-display py-20 sm:py-24 bg-[#111111]"
     >
-      <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <SectionHeading
             badge="PROJECTS"
